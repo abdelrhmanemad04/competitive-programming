@@ -1,0 +1,38 @@
+// Problem: E1. Permutation Minimization by Deque
+// Source: (e.g., https://vjudge.net/problem/CodeForces-1579E1/origin)
+// Tags: Simulation, Deque
+// Description:
+// Read a sequence of integers. Place each number either at the front or back of a deque
+// based on its comparison with the current front. Output the final order.
+
+#include <iostream>
+#include <deque>
+using namespace std;
+int main() {
+    ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+    int t;
+    cin>>t;     // number of test cases
+    while(t--) {
+        deque<int> dq;
+        int n;      // no of elements
+        cin>>n;
+        int x;
+        cin >> x;
+        // to put the first element in the deque to start comp.
+        dq.push_back(x);    
+        // In here we take the element and see which place is
+        // best to insert it at the front or the back.
+        while (--n) {
+            cin >> x;
+            if (dq.front() < x)
+                dq.push_back(x);
+            else
+                dq.push_front(x);
+        }
+        for (deque<int>::iterator it = dq.begin(); it != dq.end(); it++) {
+            cout << *it << " ";
+        }
+        cout << '\n';
+    }
+    return 0;
+}
